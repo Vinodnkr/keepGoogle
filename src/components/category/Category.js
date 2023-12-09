@@ -13,6 +13,9 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer'
+
 
 const getRandomColor = () => {
   const letters = "0123456789ABCDEF";
@@ -29,17 +32,17 @@ const Category = () => {
   const [textValue, setTextValue] = React.useState("");
 
   const data = JSON.parse(localStorage.getItem("categories")) || [{
-        id: 1,
-        name: "Arts",
-      },
-      {
-        id: 2,
-        name: "Business",
-      },
-      {
-        id: 3,
-        name: "Computers",
-      },];
+    id: 1,
+    name: "Appoinment",
+  },
+  {
+    id: 2,
+    name: "Shopping",
+  },
+  {
+    id: 3,
+    name: "Meeting",
+  },];
 
   const [categories, setCategories] = useState(data);
 
@@ -68,15 +71,16 @@ const Category = () => {
 
   return (
     <>
+    <Header />
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Folder Name</DialogTitle>
         <DialogContent>
           <DialogContentText>Please Enter the folder name</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="folder name"
+            label="Type Here"
             type="text"
             fullWidth
             variant="standard"
@@ -93,7 +97,7 @@ const Category = () => {
       </Dialog>
 
       <Container sx={{ mt: "35px" }}>
-        <Typography variant="h4">All Categories</Typography>
+        <Typography variant="h3">All Folders</Typography>
 
         <Grid container spacing={3} sx={{ mt: 3 }}>
           {categories.map((item) => (
@@ -105,6 +109,7 @@ const Category = () => {
                   borderRadius: "8px",
                   color: "white", // text color
                   cursor: "pointer",
+                  fontSize: "22px",
                 }}
                 onClick={() => handleClick(item.id)}
               >
@@ -122,14 +127,18 @@ const Category = () => {
                 color: "white", // text color
                 cursor: "pointer",
                 textAlign: "center",
+                fontSize: "22px",
+                marginBottom: "90px",
+                
               }}
               onClick={() => setOpen(true)}
             >
-              +
+              + Add Folder
             </Box>
           </Grid>
         </Grid>
       </Container>
+      <Footer />
     </>
   );
 };

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ls from "local-storage";
 import NewNote from "../NewNote";
-import Header from "../Header";
+import Header from "../Header/Header";
 import CreateCard from "../minors/CreateCard";
-import Footer from "../Footer";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   const nullNote = { id: 9999999, title: "NULL", note: "NULL" };

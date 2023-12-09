@@ -1,13 +1,15 @@
 import {
   Container,
-  FormControl,
+  //FormControl,
   Grid,
-  InputLabel,
-  Select,
+  //InputLabel,
+  //Select,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer'
 
 const CategoryItem = ({ notes }) => {
   const { id } = useParams();
@@ -25,6 +27,7 @@ const CategoryItem = ({ notes }) => {
 
   return (
     <>
+    <Header />
       <Container>
         <h4>
           Category: {categories.find((cat) => cat.id === parseInt(id))?.name}
@@ -48,6 +51,7 @@ const CategoryItem = ({ notes }) => {
           ))}
         </Grid>
       </Container>
+    <Footer />
     </>
   );
 };

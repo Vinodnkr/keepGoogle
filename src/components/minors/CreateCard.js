@@ -85,10 +85,13 @@ function CreateCard({ notes, setNotes, content, deletenote }) {
 //   },
 // ];
 
+
 function Card(props) {
   console.log("Card props", props);
   const [editMode, setEditMode] = useState(false);
   const [editContent, setEditContent] = useState(props.content);
+  const [editTitleMode, setEditTitleMode] = useState(false);
+  const [editTitle, setEditTitle] = useState(props.title);
   const [category, setCategory] = useState("");
 
   const categories = JSON.parse(localStorage.getItem("categories"));
@@ -97,30 +100,31 @@ function Card(props) {
     setEditMode(!editMode);
   }
 
-  function saveEdit() {
-    console.log("Save edit clicked", props.id, editContent);
+  function toggleEditTitleMode() {
+    setEditTitleMode(!editTitleMode);
+  }
 
-    console.log("props.notes", props.notes);
-    console.log("props.id", props.id);
+  function saveEdit() {
+    console.log("Save edit clicked", props.id, editContent, editTitle);
 
     const updatedNotes = props.notes.map((note) => {
       if (note.id === props.id) {
-        return { ...note, note: editContent };
+        return { ...note, title: editTitle, note: editContent };
       }
       return note;
     });
-
-    console.log("updatedNotes", updatedNotes);
 
     props.setNotes(updatedNotes);
 
     // Add your logic to save the edited content, e.g., send it to localStorage
     setEditMode(false);
+    setEditTitleMode(false);
   }
 
   function cancelEdit() {
-    console.log("Cancel edit clicked", props.id, props.content);
+    console.log("Cancel edit clicked", props.id, props.title, props.content);
     setEditMode(false);
+    setEditTitleMode(false);
   }
 
   function taskDelete() {
@@ -145,7 +149,16 @@ function Card(props) {
       <div className="col s12 m3">
         <div className="card white lighten">
           <div className="card-content black-text">
-            <span className="card-title">{props.title}</span>
+            {editTitleMode ? (
+              <textarea
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+              />
+            ) : (
+              <span className="card-title" onClick={toggleEditTitleMode}>
+                {props.title}
+              </span>
+            )}
             {editMode ? (
               <textarea
                 value={editContent}
@@ -200,7 +213,7 @@ function Card(props) {
               sx={{ m: 1, minWidth: 120, width: "90%" }}
             >
               <InputLabel id="demo-simple-select-standard-label">
-                Select Category
+                Select Folder
               </InputLabel>
               <Select
                 labelId="demo-simple-select-standard-label"
@@ -210,11 +223,6 @@ function Card(props) {
                 label="Select Category"
                 fullWidth
               >
-                {/* <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem> */}
                 {categories?.map((item) => (
                   <MenuItem key={item.id} value={item.name}>
                     {item.name}
