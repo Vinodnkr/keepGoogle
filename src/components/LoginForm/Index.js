@@ -51,7 +51,7 @@ export default function SignIn() {
     if (user && user.password === enteredPassword) {
       localStorage.setItem("LoginStatus", true);
       localStorage.setItem("userEmail", enteredEmail);
-      navigate("/");
+      navigate("/home");
     } else {
       alert("Invalid email or password. Please try again.");
       localStorage.setItem("LoginStatus", false);

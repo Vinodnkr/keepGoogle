@@ -165,7 +165,10 @@ function Card(props) {
                 onChange={(e) => setEditContent(e.target.value)}
               />
             ) : (
-              <p className="text-justify">{props.content}</p>
+              <span className="text-justify" onClick={toggleEditMode}>
+                {props.content}
+              </span>
+              
             )}
           </div>
           <div className="card-action blue-text">
@@ -199,7 +202,10 @@ function Card(props) {
                   className="small material-icons tooltipped"
                   data-position="top"
                   data-tooltip="Copy To Clipboard"
-                  onClick={toggleEditMode}
+                  onClick={() => {
+                    toggleEditMode();
+                    toggleEditTitleMode();
+                  }}
                 >
                   edit
                 </i>

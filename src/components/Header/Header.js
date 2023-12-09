@@ -22,7 +22,7 @@ function Heading() {
     //localStorage.setItem("userData", JSON.stringify(updatedUsers));
     //localStorage.removeItem("userEmail");
     localStorage.setItem("LoginStatus", false);
-    navigate("/login");
+    navigate("/");
 
     // You might also want to update the UI or perform other actions
      alert(`Users Name ${userEmail} LogOut successfully!`);
@@ -39,7 +39,7 @@ function Heading() {
         <nav>
           <div className="white blue-text text-darken-2 nav-wrapper ">
             <a
-              href="/"
+              href="/home"
               className="white blue-text text-darken-2 brand-logo logo left"
             >
               <i className="material-icons">description</i>
