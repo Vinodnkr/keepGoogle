@@ -10,7 +10,9 @@ import {
   TextField,
   DialogActions,
   Button,
+  Link,
 } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from '../Header/Header';
@@ -31,18 +33,7 @@ const Category = () => {
   const [open, setOpen] = React.useState(false);
   const [textValue, setTextValue] = React.useState("");
 
-  const data = JSON.parse(localStorage.getItem("categories")) || [{
-    id: 1,
-    name: "Appoinment",
-  },
-  {
-    id: 2,
-    name: "Shopping",
-  },
-  {
-    id: 3,
-    name: "Meeting",
-  },];
+  const data = JSON.parse(localStorage.getItem("categories")) ;
 
   const [categories, setCategories] = useState(data);
 
@@ -98,6 +89,7 @@ const Category = () => {
 
       <Container sx={{ mt: "35px" }}>
         <Typography variant="h3">All Folders</Typography>
+        <Link variant="h4" href="/home"><ArrowBackIcon/>Back</Link>
 
         <Grid container spacing={3} sx={{ mt: 3 }}>
           {categories.map((item) => (

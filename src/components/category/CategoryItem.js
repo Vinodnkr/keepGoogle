@@ -2,10 +2,12 @@ import {
   Container,
   //FormControl,
   Grid,
+  Link,
   //InputLabel,
   //Select,
   Typography,
 } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from '../Header/Header';
@@ -18,12 +20,13 @@ const CategoryItem = ({ notes }) => {
 
   const [categories, setCategories] = useState(data);
 
-  const filteredNotes = notes.filter((note) => {
+  const filteredNotes =  notes.filter((note) => {
     // Assuming the 'category' property in each note matches the 'name' in categories
     return (
       note.category === categories.find((cat) => cat.id === parseInt(id))?.name
     );
-  });
+  }) ;
+  console.log(filteredNotes)
 
   return (
     <>
@@ -32,6 +35,8 @@ const CategoryItem = ({ notes }) => {
         <h4>
           Category: {categories.find((cat) => cat.id === parseInt(id))?.name}
         </h4>
+        <Link variant="h4" href="/category"><ArrowBackIcon/>Back</Link>
+
         <Grid container spacing={3} sx={{ mt: 3 }}>
           {filteredNotes.map((note) => (
             <Grid item key={note.id} xs={12} sm={6} md={4}>

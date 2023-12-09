@@ -216,7 +216,7 @@ function Card(props) {
           <div style={{ marginTop: "-5px" }}>
             <FormControl
               variant="standard"
-              sx={{ m: 1, minWidth: 120, width: "90%" }}
+              sx={{ m: 1, minWidth: 250, width: "90%" }}
             >
               <InputLabel id="demo-simple-select-standard-label">
                 Select Folder

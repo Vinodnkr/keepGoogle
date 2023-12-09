@@ -35,7 +35,6 @@
 
 #### Nice to Have
     
-    -forget password
     -use github repo
     -pin notes
     -add foler or file button
